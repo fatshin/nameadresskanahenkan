@@ -20,13 +20,30 @@ client = OpenAI(
 # 名前データセットの読み込み
 name_data = {}
 name_chars = set()  # データセットに含まれる文字のセット
-dataset_path = os.path.join(os.path.dirname(__file__), 'data', 'names.json')
+dataset_path = os.path.join(os.path.dirname(__file__), 'japanese-personal-name-dataset', 'data', 'names.json')
 if os.path.exists(dataset_path):
     with open(dataset_path, 'r', encoding='utf-8') as f:
         name_data = json.load(f)
         # データセットに含まれる全ての文字を収集
         for name in name_data.keys():
             name_chars.update(list(name))
+
+# 郵便番号データの読み込み
+postal_data = []
+postal_data_path = os.path.join(os.path.dirname(__file__), 'data', 'postal_data.json')
+if os.path.exists(postal_data_path):
+    with open(postal_data_path, 'r', encoding='utf-8') as f:
+        postal_data = json.load(f)
+
+def get_address_from_postal_code(postal_code):
+    """郵便番号から住所情報を取得"""
+    for entry in postal_data:
+        if entry['郵便番号'] == postal_code:
+            return {
+                'address': f"{entry['都道府県名']}{entry['市区町村名']}{entry['町域名']}",
+                'address_kana': f"{entry['都道府県名カナ']}{entry['市区町村名カナ']}{entry['町域名カナ']}"
+            }
+    return None
 
 def get_reading_from_llm(name):
     try:
@@ -132,8 +149,16 @@ def index():
         last_name = request.form['last_name']
         first_name = request.form['first_name']
         
-        # カナ変換を実行
-        address_kana = convert_address_to_kana(address)
+        # 郵便番号から住所情報を取得
+        postal_info = get_address_from_postal_code(postal_code)
+        if postal_info:
+            address = postal_info['address']
+            address_kana = postal_info['address_kana']
+        else:
+            # 郵便番号が見つからない場合は入力された住所を変換
+            address_kana = convert_address_to_kana(address)
+        
+        # 氏名のカナ変換を実行
         last_name_kana = convert_name_to_kana(last_name)
         first_name_kana = convert_name_to_kana(first_name)
         

@@ -1,0 +1,3 @@
+[submodule "japanese-personal-name-dataset"]
+	path = japanese-personal-name-dataset
+	url = https://github.com/shuheilocale/japanese-personal-name-dataset.git

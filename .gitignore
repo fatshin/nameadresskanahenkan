@@ -37,3 +37,8 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Project specific
+data/
+KEN_ALL.CSV
+postal_data.json
