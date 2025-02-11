@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住所・氏名フリガナ変換</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>住所・氏名フリガナ変換</h1>
+    <form action="/" method="post">
+        <div class="form-group">
+            <label for="postal_code">郵便番号:</label>
+            <input type="text" id="postal_code" name="postal_code" value="1050014" required>
+        </div>
+        <div class="form-group">
+            <label for="address">住所:</label>
+            <input type="text" id="address" name="address" value="東京都港区芝１丁目１２－１９" required>
+        </div>
+        <div class="form-group">
+            <label for="last_name">姓:</label>
+            <input type="text" id="last_name" name="last_name" value="本橋" required>
+        </div>
+        <div class="form-group">
+            <label for="first_name">名:</label>
+            <input type="text" id="first_name" name="first_name" value="伸一" required>
+        </div>
+        <button type="submit">変換</button>
+    </form>
+</body>
+</html>

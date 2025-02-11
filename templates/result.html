@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>変換結果</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .result-group h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+        .result-label {
+            font-weight: bold;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>変換結果</h1>
+    
+    <div class="result-group">
+        <h2>郵便番号</h2>
+        <div class="result-item">
+            <span class="result-label">郵便番号:</span>
+            {{ postal_code }}
+        </div>
+    </div>
+
+    <div class="result-group">
+        <h2>住所</h2>
+        <div class="result-item">
+            <span class="result-label">住所:</span>
+            {{ address }}
+        </div>
+        <div class="result-item">
+            <span class="result-label">カナ:</span>
+            {{ address_kana }}
+        </div>
+    </div>
+
+    <div class="result-group">
+        <h2>氏名</h2>
+        <div class="result-item">
+            <span class="result-label">姓:</span>
+            {{ last_name }}
+        </div>
+        <div class="result-item">
+            <span class="result-label">カナ:</span>
+            {{ last_name_kana }}
+        </div>
+        <div class="result-item">
+            <span class="result-label">名:</span>
+            {{ first_name }}
+        </div>
+        <div class="result-item">
+            <span class="result-label">カナ:</span>
+            {{ first_name_kana }}
+        </div>
+    </div>
+
+    <a href="/" class="back-button">戻る</a>
+</body>
+</html>
